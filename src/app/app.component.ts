@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'roomBooking';
   users: any = [];
   listing: any = [];
@@ -14,12 +14,15 @@ export class AppComponent {
   listingByName: any = [];
   listingByCity: any = [];
 
-  userSignedIn = false;
-
-  constructor(authService: AuthService) {
-    authService.userSignedIn$.subscribe((signedIn) => {
-      console.log('signIn state', signedIn);
-      this.userSignedIn = signedIn;
+  isLoggedIn = false;
+  constructor(public authService: AuthService) {
+    this.authService.userSignedIn$.subscribe((signedIn) => {
+      console.log('signedIn', signedIn);
+      this.isLoggedIn = signedIn;
     });
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 }
