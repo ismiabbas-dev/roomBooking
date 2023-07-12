@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,9 +13,14 @@ export class NavbarComponent {
 
   public isCollapsed = false;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
     this.role = this.auth.getRole();
   }
 
   ngOnInit(): void {}
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

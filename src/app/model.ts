@@ -11,7 +11,7 @@ export interface BookingResponse {
   BookingStatus: number;
   UserID: number;
   RoomNumber: number;
-  Name: string
+  Name: string;
 }
 
 export interface BookingDetails {

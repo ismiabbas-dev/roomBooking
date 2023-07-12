@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminDashboardComponent,
+    loadChildren: () =>
+      import('./admin-dashboard/admin-dashboard.module').then(
+        (m) => m.AdminDashboardModule
+      ),
   },
 ];
 

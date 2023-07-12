@@ -26,14 +26,15 @@
           </li>
           <div *ngIf="role === 'admin'; else userDashboard">
             <li class="nav-item">
-              <a class="nav-link" routerLink="dashboard/admin"
-                >Admin Dashboard</a
-              >
+              <a class="nav-link" routerLink="dashboard/admin">Dashboard</a>
             </li>
           </div>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="" (click)="logout()">Logout</a>
+          </li>
           <ng-template #userDashboard>
             <li class="nav-item">
-              <a class="nav-link" routerLink="dashboard/user">User Dashboard</a>
+              <a class="nav-link" style="cursor: pointer">Dashboard</a>
             </li>
           </ng-template>
         </ul>

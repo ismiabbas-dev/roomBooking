@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <form [formGroup]="registerForm" class="w-50 rounded" (ngSubmit)="register()">
+    <h2 class="text-center mb-4">Register</h2>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        placeholder="Enter email"
+        required
+      />
+      <label for="email">Email address</label>
+      <div
+        *ngIf="
+          registerForm.controls['email'].invalid &&
+          (registerForm.controls['email'].dirty ||
+            registerForm.controls['email'].touched)
+        "
+        class="invalid-feedback"
+      >
+        Please enter a valid email address.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        formControlName="username"
+        placeholder="Enter username"
+        required
+      />
+      <label for="username">Username</label>
+      <div
+        *ngIf="
+          registerForm.controls['username'].invalid &&
+          (registerForm.controls['username'].dirty ||
+            registerForm.controls['username'].touched)
+        "
+        class="invalid-feedback"
+      >
+        Please enter a valid username.
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+        placeholder="Password"
+        required
+      />
+      <label for="password">Password</label>
+      <div
+        *ngIf="
+          registerForm.controls['password'].invalid &&
+          (registerForm.controls['password'].dirty ||
+            registerForm.controls['password'].touched)
+        "
+        class="invalid-feedback"
+      >
+        Please enter your password.
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary btn-block mt-3"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
+  </form>
+</div>

@@ -18,9 +18,5 @@ export class SignInComponent {
     });
   }
 
-  logout(): void {
-    this.auth.logout();
-  }
-
   ngOnInit(): void {}
 }

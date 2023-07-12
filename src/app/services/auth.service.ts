@@ -19,11 +19,17 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post('/auth/logout', {});
+  register(user: any): Observable<any> {
+    return this.http.post(`${apiUrl}/auth/register`, user, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   getRole(): string {
     return localStorage.getItem('role')!;
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') !== null;
   }
 }
