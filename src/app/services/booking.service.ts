@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, pipe } from 'rxjs';
+import { BehaviorSubject, Observable, from, map, pipe } from 'rxjs';
 import { Booking, BookingResponse } from '../model';
 
 @Injectable({
@@ -29,36 +29,37 @@ export class BookingService {
   }
 
   createBooking(roomId: number): Observable<Booking> {
-    return this.http.post<Booking>(
-      '/booking',
-      {
-        roomId,
-        userId: this.userId,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
+    return from(
+      this.http.post<Booking>(
+        `${this.apiUrl}/booking`,
+        {
+          roomId,
+          userId: parseInt(this.userId),
         },
-      }
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
     );
   }
 
   getBooking(id: number): Observable<Booking> {
-    return this.http.get<Booking>(`${this.apiUrl}/booking/${id}`);
+    return from(this.http.get<Booking>(`${this.apiUrl}/booking/${id}`));
   }
 
   updateBooking(booking: Booking): Observable<Booking> {
-    return this.http.put<Booking>(
-      `${this.apiUrl}/booking/${booking.id}`,
-      booking
+    return from(
+      this.http.put<Booking>(`${this.apiUrl}/booking/${booking.id}`, booking)
     );
   }
 
   deleteBooking(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/booking/${id}`);
+    return from(this.http.delete<void>(`${this.apiUrl}/booking/${id}`));
   }
 
   getBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(`${this.apiUrl}/booking`);
+    return from(this.http.get<Booking[]>(`${this.apiUrl}/booking`));
   }
 }

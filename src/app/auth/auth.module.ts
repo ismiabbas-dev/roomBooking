@@ -4,7 +4,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -23,8 +23,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [RegisterComponent],
-  imports: [RouterModule.forChild(routes), ReactiveFormsModule, CommonModule],
+  declarations: [RegisterComponent, SignInComponent],
+  imports: [
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    CommonModule,
+    NgbToastModule,
+  ],
   exports: [RouterModule],
 })
 export class AuthModule {}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject, from } from 'rxjs';
 import { apiUrl } from '../constant';
 
 @Injectable({
@@ -21,12 +21,14 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   login(email: string | null, password: string | null): Observable<any> {
-    return this.http.post(
-      `${apiUrl}/auth/login`,
-      { email, password },
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
+    return from(
+      this.http.post(
+        `${apiUrl}/auth/login`,
+        { email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
     );
   }
 
@@ -36,9 +38,11 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   register(user: any): Observable<any> {
-    return this.http.post(`${apiUrl}/auth/register`, user, {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return from(
+      this.http.post(`${apiUrl}/auth/register`, user, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+    );
   }
 
   /**

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  toastMessage: string = '';
+  show = false;
 
   constructor(
     private authService: AuthService,

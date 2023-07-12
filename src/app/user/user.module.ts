@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'rooms',
     pathMatch: 'full',
   },
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [BookingsComponent, RoomsComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), NgbToastModule],
   exports: [RouterModule],
 })
 export class UserModule {}

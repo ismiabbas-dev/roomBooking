@@ -1,74 +1,104 @@
-<div class="d-flex justify-content-center align-items-center mt-5">
-  <form [formGroup]="registerForm" class="w-50 rounded" (ngSubmit)="register()">
-    <h2 class="text-center mb-4">Register</h2>
-    <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        placeholder="Enter email"
-        required
-      />
-      <label for="email">Email address</label>
-      <div
-        *ngIf="
-          registerForm.controls['email'].invalid &&
-          (registerForm.controls['email'].dirty ||
-            registerForm.controls['email'].touched)
-        "
-        class="invalid-feedback"
-      >
-        Please enter a valid email address.
+<body
+  class="d-flex justify-content-center align-items-center py-4 w-100 flex-column"
+>
+  <ngb-toast
+    *ngIf="show"
+    [autohide]="true"
+    (hidden)="show = false"
+    [class]="'bg-danger text-light toast'"
+  >
+    {{ toastMessage }}
+  </ngb-toast>
+
+  <h3 class="text-center fw-normal d-block">Register</h3>
+
+  <div class="flex-row justify-content-center align-items-center form-register">
+    <img
+      src="/assets/register.jpg"
+      alt="register"
+      width="300"
+      height="300"
+      class="d-none d-md-block"
+    />
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter email"
+          required
+        />
+        <label for="email">Email address</label>
+        <div
+          *ngIf="
+            registerForm.controls['email'].invalid &&
+            (registerForm.controls['email'].dirty ||
+              registerForm.controls['email'].touched)
+          "
+          class="invalid-feedback"
+        >
+          Please enter a valid email address.
+        </div>
       </div>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        formControlName="username"
-        placeholder="Enter username"
-        required
-      />
-      <label for="username">Username</label>
-      <div
-        *ngIf="
-          registerForm.controls['username'].invalid &&
-          (registerForm.controls['username'].dirty ||
-            registerForm.controls['username'].touched)
-        "
-        class="invalid-feedback"
-      >
-        Please enter a valid username.
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          formControlName="username"
+          placeholder="Enter username"
+          required
+        />
+        <label for="username">Username</label>
+        <div
+          *ngIf="
+            registerForm.controls['username'].invalid &&
+            (registerForm.controls['username'].dirty ||
+              registerForm.controls['username'].touched)
+          "
+          class="invalid-feedback"
+        >
+          Please enter a valid username.
+        </div>
       </div>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        formControlName="password"
-        placeholder="Password"
-        required
-      />
-      <label for="password">Password</label>
-      <div
-        *ngIf="
-          registerForm.controls['password'].invalid &&
-          (registerForm.controls['password'].dirty ||
-            registerForm.controls['password'].touched)
-        "
-        class="invalid-feedback"
-      >
-        Please enter your password.
+
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+          required
+        />
+        <label for="password">Password</label>
+        <div
+          *ngIf="
+            registerForm.controls['password'].invalid &&
+            (registerForm.controls['password'].dirty ||
+              registerForm.controls['password'].touched)
+          "
+          class="invalid-feedback"
+        >
+          Please enter your password.
+        </div>
       </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary btn-block mt-3"
-      [disabled]="registerForm.invalid"
-    >
-      Register
-    </button>
-  </form>
-</div>
+
+      <button
+        type="submit"
+        class="btn btn-primary mt-3"
+        [disabled]="registerForm.invalid"
+      >
+        Register
+      </button>
+    </form>
+    <p class="mt-2">
+      <a href="#" class="link-underline-primary" routerLink="/auth/sign-in"
+        >Sign In</a
+      >
+    </p>
+  </div>
+</body>

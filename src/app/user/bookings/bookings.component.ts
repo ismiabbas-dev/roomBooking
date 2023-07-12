@@ -7,6 +7,9 @@ import { BookingService } from 'src/app/services/booking.service';
   styleUrls: ['./bookings.component.css'],
 })
 export class BookingsComponent {
+  show = false;
+  toastMessage = '';
+  toastStyle = 'bg-success text-light';
   bookings: any[] = [];
   userId = localStorage.getItem('userId');
 

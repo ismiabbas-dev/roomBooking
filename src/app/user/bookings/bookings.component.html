@@ -1,51 +1,62 @@
-<div class="py-5 justify-content-center d-flex align-items-center">
-  <div class="container">
+<div class="container mt-4">
+  <div>
     <h3>Bookings</h3>
     <p class="lead">This is your active booking</p>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div *ngIf="bookings.length !== 0">
-        <div class="col" *ngFor="let book of bookings">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Room Number: {{ book.roomNumber }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Booking Id: {{ book.id }}</li>
-              <li class="list-group-item">
-                Room Type: {{ book.roomType | titlecase }}
-              </li>
-            </ul>
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group"></div>
-                <small class="text-muted"
-                  >Booking Status:
-                  <span
-                    [ngClass]="{
-                      'text-warning': book.bookingStatus === 'Booked',
-                      'text-success': book.bookingStatus === 'Approved',
-                      'text-danger': book.bookingStatus === 'Rejected'
-                    }"
-                  >
-                    {{ book.bookingStatus }}
-                  </span>
-                </small>
-              </div>
+  </div>
+
+  <ngb-toast
+    *ngIf="show"
+    [autohide]="true"
+    (hidden)="show = false"
+    [class]="'bg-danger text-light toast'"
+  >
+    {{ toastMessage }}
+  </ngb-toast>
+
+  <div *ngIf="bookings.length !== 0">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+      <div *ngFor="let book of bookings">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Room Number: {{ book.roomNumber }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Booking Id: {{ book.id }}</li>
+            <li class="list-group-item">
+              Room Type: {{ book.roomType | titlecase }}
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group"></div>
+              <small class="text-muted"
+                >Booking Status:
+                <span
+                  [ngClass]="{
+                    'text-warning': book.bookingStatus === 'Booked',
+                    'text-success': book.bookingStatus === 'Approved',
+                    'text-danger': book.bookingStatus === 'Rejected'
+                  }"
+                >
+                  {{ book.bookingStatus }}
+                </span>
+              </small>
             </div>
           </div>
         </div>
       </div>
-      <div *ngIf="bookings.length === 0">
-        <p class="lead">You have no active booking currently</p>
-        <a
-          name=""
-          id=""
-          class="btn btn-primary"
-          routerLink="/user/rooms"
-          role="button"
-          >Make New Booking</a
-        >
-      </div>
     </div>
+  </div>
+
+  <div *ngIf="bookings.length === 0">
+    <p class="lead">You have no active booking currently</p>
+    <a
+      name=""
+      id=""
+      class="btn btn-primary"
+      routerLink="/user/rooms"
+      role="button"
+      >Make New Booking</a
+    >
   </div>
 </div>
