@@ -1,0 +1,72 @@
+<ng-template #addRoomModal let-modal>
+  <!-- Add Room Modal Code -->
+</ng-template>
+
+<ng-template #editRoomModal let-modal>
+  <!-- Edit Room Modal Code -->
+</ng-template>
+
+<ngb-toast
+  *ngIf="show"
+  [autohide]="true"
+  (hidden)="show = false"
+  [ngClass]="toastStyle"
+>
+  {{ toastMessage }}
+</ngb-toast>
+
+<div class="container-md p-4">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Room Id</th>
+          <th scope="col">Room Number</th>
+          <th scope="col">Room Type</th>
+          <th scope="col">Booked By</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="" *ngFor="let r of rooms">
+          <td>{{ r.id }}</td>
+          <td>{{ r.number }}</td>
+          <td>{{ r.type | titlecase }}</td>
+          <td>{{ r.bookedBy }}</td>
+          <td
+            [ngClass]="{
+              'text-success': r.status === 1,
+              'text-danger': r.status === 0
+            }"
+          >
+            {{ r.status === 0 ? "Inactive" : "Active" }}
+          </td>
+          <span>
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="openEditRoomModal(editRoomModal, r)"
+            >
+              Edit
+            </button>
+          </span>
+          <span>
+            <button
+              class="btn btn-outline-danger"
+              type="button"
+              (click)="deleteRoom(r.id)"
+            >
+              Delete
+            </button>
+          </span>
+        </tr>
+      </tbody>
+    </table>
+    <input
+      class="btn btn-primary"
+      type="button"
+      value="Add Room"
+      (click)="openAddRoomModal(addRoomModal)"
+    />
+  </div>
+</div>

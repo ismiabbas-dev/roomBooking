@@ -12,6 +12,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   toastMessage: string = '';
   show = false;
+  toastStyle = 'bg-success text-light';
 
   constructor(
     private authService: AuthService,
@@ -19,19 +20,29 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
+      email: '',
       username: '',
       password: '',
-      email: '',
       photo: '',
     });
   }
 
   register() {
-    // this.authService.register(this.registerForm.value).subscribe((res) => {
-    //   if (res.success) {
-    //     this.router.navigate(['/login']);
-    //   }
-    // });
-    console.log('registerForm', this.registerForm.value);
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (data) => {
+        this.toastMessage = 'User registered successfully';
+        this.show = true;
+      },
+      error: (error) => {
+        this.toastMessage = error.error.message;
+        this.toastStyle = 'bg-danger text-light';
+        this.show = true;
+      },
+      complete: () => {
+        setTimeout(() => {
+          this.router.navigate(['/auth/sign-in']);
+        }, 2000);
+      },
+    });
   }
 }

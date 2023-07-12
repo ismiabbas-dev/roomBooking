@@ -35,6 +35,7 @@ export class RoomsComponent {
             type: room.RoomType,
             number: room.RoomNumber,
             status: room.RoomStatus,
+            bookedBy: room.Name,
           };
         });
     });

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { RoomListComponent } from 'src/app/room-list/room-list.component';
+import { RoomListComponent } from 'src/app/admin/room-list/room-list.component';
+import { BookingComponent } from 'src/app/admin/booking/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'room',
     component: RoomListComponent,
+  },
+  {
+    path: 'booking',
+    component: BookingComponent,
   },
 ];
 

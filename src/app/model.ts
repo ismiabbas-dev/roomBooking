@@ -30,6 +30,7 @@ export interface Room {
   number: number;
   type: string;
   status: number;
+  bookedBy: string;
 }
 
 export interface RoomResponse {
@@ -37,6 +38,7 @@ export interface RoomResponse {
   RoomNumber: number;
   RoomType: string;
   RoomStatus: number;
+  Name: string;
 }
 
 export interface User {

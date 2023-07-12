@@ -19,7 +19,7 @@ export class RoomService {
 
   createRoom(room: Object): Observable<Object> {
     return from(
-      this.http.post(`${this.baseUrl}/room`, JSON.stringify(room), {
+      this.http.post(`${this.baseUrl}/room`, room, {
         headers: { 'Content-Type': 'application/json' },
       })
     );
