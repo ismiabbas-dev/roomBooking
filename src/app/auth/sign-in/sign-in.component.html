@@ -1,37 +1,48 @@
-<div class="d-flex justify-content-center align-items-center mt-5">
-  <form class="w-25 d-flex flex-column">
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input
-        type="email"
-        class="form-control mt-2"
-        id="email"
-        name="email"
-        placeholder="Enter email"
-        required
-        #email
-      />
-      <div class="invalid-feedback">Please enter a valid email address.</div>
-    </div>
-    <div class="form-group mt-3">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        class="form-control mt-2"
-        id="password"
-        name="password"
-        placeholder="Password"
-        required
-        #password
-      />
-      <div class="invalid-feedback">Please enter your password.</div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary btn-block mt-3"
-      (click)="login(email.value, password.value)"
-    >
-      Sign In
-    </button>
-  </form>
-</div>
+<body
+  class="d-flex justify-content-center align-items-center py-4 w-100 min-vh-100"
+>
+  <main class="form-signin w-50 m-auto">
+    <img src="/assets/login-2.jpg" alt="login" width="300" height="300" />
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="name@example.com"
+          formControlName="email"
+        />
+        <label for="email">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <label for="password">Password</label>
+      </div>
+
+      <div class="form-check text-start my-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="remember-me"
+          id="rememberMe"
+        />
+        <label class="form-check-label" for="rememberMe"> Remember me </label>
+      </div>
+      <button
+        class="btn btn-primary w-100 py-2"
+        type="submit"
+        [disabled]="!signInForm.valid"
+      >
+        Sign in
+      </button>
+    </form>
+  </main>
+</body>

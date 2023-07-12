@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { authGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -9,18 +9,16 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'sign-in',
-    component: SignInComponent,
-  },
-  {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [authGuard],
   },
   {
     path: 'booking',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
+    canActivate: [authGuard],
   },
   {
     path: 'auth',

@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { apiUrl } from '../constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  isAvailable() {
+    throw new Error('Method not implemented.');
+  }
+  public userSignedIn$ = new Subject<boolean>();
+
   constructor(private http: HttpClient) {}
 
   login(email: string | null, password: string | null): Observable<any> {

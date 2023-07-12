@@ -21,6 +21,7 @@ export class NavbarComponent {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.auth.userSignedIn$.next(false);
+    this.router.navigate(['/auth/sign-in']);
   }
 }

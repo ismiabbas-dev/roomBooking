@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,12 @@ export class AppComponent {
   listingByName: any = [];
   listingByCity: any = [];
 
-  constructor() {}
+  userSignedIn = false;
+
+  constructor(authService: AuthService) {
+    authService.userSignedIn$.subscribe((signedIn) => {
+      console.log('signIn state', signedIn);
+      this.userSignedIn = signedIn;
+    });
+  }
 }
