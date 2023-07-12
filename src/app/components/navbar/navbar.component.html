@@ -18,23 +18,39 @@
         [ngbCollapse]="!isCollapsed"
       >
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <li class="nav-item" *ngIf="role === 'user'">
+            <a class="nav-link" routerLink="user/rooms">Rooms</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="booking">Booking</a>
+
+          <li class="nav-item" *ngIf="role === 'user'">
+            <a class="nav-link align-items-center" routerLink="user/bookings"
+              >Bookings
+              <span class="badge rounded-pill text-bg-primary">{{
+                bookingService.bookingCount$ | async
+              }}</span></a
+            >
           </li>
-          <div *ngIf="role === 'admin'; else userDashboard">
+
+          <ng-container *ngIf="role === 'admin'; else userNavigation">
             <li class="nav-item">
               <a class="nav-link" routerLink="dashboard/admin">Dashboard</a>
             </li>
-          </div>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="profile">Profile</a>
+            </li>
+          </ng-container>
+
           <li class="nav-item">
             <a class="nav-link" routerLink="" (click)="logout()">Logout</a>
           </li>
-          <ng-template #userDashboard>
+          <ng-template #userNavigation>
             <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer">Dashboard</a>
+              <a class="nav-link" routerLink="profile">Profile</a>
+            </li>
+          </ng-template>
+          <ng-template #adminNavigation>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="profile">Profile</a>
             </li>
           </ng-template>
         </ul>

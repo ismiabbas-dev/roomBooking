@@ -32,6 +32,13 @@ export interface Room {
   status: number;
 }
 
+export interface RoomResponse {
+  RoomID: number;
+  RoomNumber: number;
+  RoomType: string;
+  RoomStatus: number;
+}
+
 export interface User {
   id: number;
   name: string;

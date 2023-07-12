@@ -2,32 +2,25 @@ import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingService } from '../services/booking.service';
+import { BookingComponent } from './booking/booking.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'booking',
+    pathMatch: 'full',
+  },
+  {
+    path: 'booking',
+    component: BookingComponent,
+  },
+];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class BookingModule implements OnInit {
-  constructor(private bookingService: BookingService) {}
+  constructor() {}
   ngOnInit() {}
-
-  getBooking(id: number) {
-    this.bookingService.getBooking(id).subscribe((booking) => {
-      console.log(booking);
-    });
-  }
-
-  loadBooking() {
-    this.bookingService.getBookings().subscribe((bookings) => {
-      console.log(bookings);
-    });
-  }
-
-  addBooking(booking: any) {
-    this.bookingService.createBooking(booking).subscribe((booking) => {
-      console.log(booking);
-    });
-  }
 }

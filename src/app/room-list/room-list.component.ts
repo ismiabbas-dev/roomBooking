@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from '../services/room.service';
-import { Room } from '../model';
+import { Room, RoomResponse } from '../model';
 
 @Component({
   selector: 'app-room-list',
@@ -8,14 +8,20 @@ import { Room } from '../model';
   styleUrls: ['./room-list.component.css'],
 })
 export class RoomListComponent implements OnInit {
-  rooms: any[] = [];
+  rooms: Room[] = [];
 
-  constructor(private roomService: RoomService) {
-    this.roomService.getRooms().subscribe((rooms) => {
-      this.rooms = rooms;
-      console.log(this.rooms);
+  constructor(private roomService: RoomService) {}
+
+  ngOnInit(): void {
+    this.roomService.getRooms().subscribe((rooms: RoomResponse[]) => {
+      this.rooms = rooms.map((room: RoomResponse) => {
+        return {
+          id: room.RoomID,
+          type: room.RoomType,
+          number: room.RoomNumber,
+          status: room.RoomStatus,
+        };
+      });
     });
   }
-
-  ngOnInit(): void {}
 }

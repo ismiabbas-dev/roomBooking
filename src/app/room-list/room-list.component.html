@@ -11,16 +11,16 @@
       </thead>
       <tbody>
         <tr class="" *ngFor="let r of rooms">
-          <td>{{ r.RoomID }}</td>
-          <td>{{ r.RoomNumber }}</td>
-          <td>{{ r.RoomType | uppercase }}</td>
+          <td>{{ r.id }}</td>
+          <td>{{ r.number }}</td>
+          <td>{{ r.type }}</td>
           <td
             [ngClass]="{
-              'text-success': r.RoomStatus === 0,
-              'text-danger': r.RoomStatus === 1
+              'text-success': r.status === 0,
+              'text-danger': r.status === 1
             }"
           >
-            {{ r.RoomStatus === 0 ? "Available" : "Booked" }}
+            {{ r.status === 0 ? "Available" : "Booked" }}
           </td>
         </tr>
       </tbody>

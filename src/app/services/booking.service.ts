@@ -1,17 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Booking } from '../model';
+import { BehaviorSubject, Observable, map, pipe } from 'rxjs';
+import { Booking, BookingResponse } from '../model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
   private apiUrl = 'http://localhost:8080';
-  constructor(private http: HttpClient) {}
+  public bookingCount$ = new BehaviorSubject<number>(0);
 
-  createBooking(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>('/booking', booking);
+  userId = localStorage.getItem('userId')!;
+
+  constructor(private http: HttpClient) {
+    this.getBookings()
+      .pipe(
+        map((bookings: any) =>
+          bookings.filter(
+            (booking: BookingResponse) =>
+              booking.UserID == parseInt(this.userId)
+          )
+        ),
+        map((filteredBookings) => filteredBookings.length)
+      )
+      .subscribe((count) => {
+        this.bookingCount$.next(count);
+      });
+  }
+
+  createBooking(roomId: number): Observable<Booking> {
+    return this.http.post<Booking>(
+      '/booking',
+      {
+        roomId,
+        userId: this.userId,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 
   getBooking(id: number): Observable<Booking> {

@@ -21,11 +21,12 @@ export class SignInComponent {
         this.auth.userSignedIn$.next(true);
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
+        localStorage.setItem('userId', res.id);
 
         if (res.role === 'user') {
-          this.router.navigate(['/dashboard/user']);
+          this.router.navigate(['/user/dashboard']);
         } else {
-          this.router.navigate(['/dashboard/admin']);
+          this.router.navigate(['/admin/']);
         }
       }
     });
