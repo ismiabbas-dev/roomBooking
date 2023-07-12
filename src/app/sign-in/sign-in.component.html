@@ -12,37 +12,36 @@
     <div class="form-floating">
       <input
         type="email"
+        name="email"
         class="form-control"
-        id="floatingInput"
         placeholder="name@example.com"
+        autocomplete="off"
+        #email
       />
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
       <input
+        #password
         type="password"
+        name="password"
         class="form-control"
-        id="floatingPassword"
         placeholder="Password"
+        required
+        autocomplete="off"
       />
       <label for="floatingPassword">Password</label>
     </div>
 
     <div class="form-check text-start my-3">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value="remember-me"
-        id="flexCheckDefault"
-      />
+      <input class="form-check-input" type="checkbox" value="remember-me" />
       <label class="form-check-label" for="flexCheckDefault">
         Remember me
       </label>
     </div>
     <button
       class="btn btn-primary w-100 py-2"
-      type="submit"
-      (click)="router.navigate(['/dashboard'])"
+      (click)="onSubmit(email.value, password.value)"
     >
       Sign in
     </button>

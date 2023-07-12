@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'roomBooking';
+  users: any = [];
+  listing: any = [];
+  booking: any = [];
+  listingByAdmin: any = [];
+  listingByName: any = [];
+  listingByCity: any = [];
+
+  constructor() {}
 }
