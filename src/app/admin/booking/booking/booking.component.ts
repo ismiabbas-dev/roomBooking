@@ -121,4 +121,11 @@ export class BookingComponent {
     this.modal.dismissAll();
     this.loadAllBookings();
   }
+
+  rejectBooking(booking: Booking) {
+    booking.status = 1;
+    this.updateBooking(booking);
+    this.modal.dismissAll();
+    this.loadAllBookings();
+  }
 }

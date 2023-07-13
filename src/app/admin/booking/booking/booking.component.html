@@ -89,7 +89,13 @@
     >
       Approve
     </button>
-    <button type="button" class="btn btn-outline-danger btn-sm">Reject</button>
+    <button
+      type="button"
+      class="btn btn-outline-danger btn-sm"
+      (click)="rejectBooking(bookingDetails)"
+    >
+      Reject
+    </button>
   </div>
 </ng-template>
 
