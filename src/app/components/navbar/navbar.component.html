@@ -19,11 +19,19 @@
       >
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item" *ngIf="role === 'user'">
-            <a class="nav-link" routerLink="user/rooms">Rooms</a>
+            <a
+              class="nav-link"
+              routerLink="user/rooms"
+              routerLinkActive="active"
+              >Rooms</a
+            >
           </li>
 
           <li class="nav-item" *ngIf="role === 'user'">
-            <a class="nav-link align-items-center" routerLink="user/bookings"
+            <a
+              class="nav-link align-items-center"
+              routerLink="user/bookings"
+              routerLinkActive="active"
               >Bookings
               <span class="badge rounded-pill text-bg-primary">{{
                 bookingService.bookingCount$ | async
@@ -33,10 +41,20 @@
 
           <ng-container *ngIf="role === 'admin'; else userNavigation">
             <li class="nav-item">
-              <a class="nav-link" routerLink="admin/dashboard">Dashboard</a>
+              <a
+                class="nav-link"
+                routerLink="admin/dashboard"
+                routerLinkActive="active"
+                >Dashboard</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="admin/profile">Profile</a>
+              <a
+                class="nav-link"
+                routerLink="admin/profile"
+                routerLinkActive="active"
+                >Profile</a
+              >
             </li>
           </ng-container>
 
@@ -45,7 +63,12 @@
           </li>
           <ng-template #userNavigation>
             <li class="nav-item">
-              <a class="nav-link" routerLink="user/profile">Profile</a>
+              <a
+                class="nav-link"
+                routerLink="user/profile"
+                routerLinkActive="active"
+                >Profile</a
+              >
             </li>
           </ng-template>
         </ul>
