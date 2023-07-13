@@ -3,6 +3,8 @@ export interface Booking {
   roomId: number;
   userId: number;
   status: number;
+  name?: string;
+  roomNumber?: number;
 }
 
 export interface BookingResponse {

@@ -28,6 +28,10 @@ export class BookingService {
       });
   }
 
+  get bookingsCount() {
+    return this.bookingCount$.asObservable();
+  }
+
   createBooking(roomId: number): Observable<Booking> {
     return from(
       this.http.post<Booking>(

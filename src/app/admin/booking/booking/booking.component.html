@@ -3,27 +3,98 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Room Id</th>
-          <th scope="col">Room Number</th>
-          <th scope="col">Room Type</th>
+          <th scope="col">Booking ID</th>
+          <th scope="col">Room ID</th>
           <th scope="col">Status</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr class="" *ngFor="let r of bookings">
           <td>{{ r.id }}</td>
           <td>{{ r.roomId }}</td>
-          <td>{{ r.userId }}</td>
           <td
             [ngClass]="{
-              'text-success': r.status === 0,
-              'text-danger': r.status === 1
+              'text-warning': r.status === 0,
+              'text-danger': r.status === 1,
+              'text-success': r.status === 2
             }"
           >
-            {{ r.status === 0 ? "Available" : "Booked" }}
+            {{
+              r.status === 0
+                ? "Booked"
+                : r.status == 1
+                ? "Rejected"
+                : "Approved"
+            }}
+          </td>
+          <td>
+            <div class="d-flex justify-content-start gap-2">
+              <button
+                class="btn btn-outline-success btn-sm"
+                type="button"
+                (click)="viewBookingDetail(viewBookingModal, r)"
+              >
+                View
+              </button>
+
+              <button
+                class="btn btn-outline-danger btn-sm"
+                type="button"
+                (click)="deleteRoom(deleteBookingModal, r)"
+              >
+                Delete
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<ng-template #viewBookingModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Booking Details</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success btn-sm">
+        Approve
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm">
+        Reject
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deleteBookingModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Are you sure to delete this booking?</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex gap-2 align-content-end">
+      <button type="button" class="btn btn-outline-success btn-md">Yes</button>
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-md"
+        (click)="modal.dismiss()"
+      >
+        No
+      </button>
+    </div>
+  </div>
+</ng-template>

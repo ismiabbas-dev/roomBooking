@@ -20,6 +20,7 @@ export class NavbarComponent {
     public bookingService: BookingService
   ) {
     this.role = this.auth.getRole();
+    this.bookingService.getBookings();
   }
 
   ngOnInit(): void {}

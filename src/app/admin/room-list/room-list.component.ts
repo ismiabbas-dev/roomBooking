@@ -12,8 +12,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class RoomListComponent implements OnInit {
   rooms: Room[] = [];
   addRoomForm: FormGroup = new FormGroup({
-    type: new FormGroup({}),
-    number: new FormGroup({}),
+    roomType: new FormGroup({}),
+    roomNumber: new FormGroup({}),
   });
   toastMessage: string = '';
   show = false;
@@ -36,8 +36,8 @@ export class RoomListComponent implements OnInit {
     this.getRooms();
 
     this.addRoomForm = this.formBuilder.group({
-      type: ['', Validators.required],
-      number: ['', Validators.required],
+      roomType: ['', Validators.required],
+      roomNumber: ['', Validators.required],
     });
   }
 
@@ -55,15 +55,16 @@ export class RoomListComponent implements OnInit {
     });
   }
 
-  openAddRoomModal(addRoomModal: any) {
-    this.modal.open(addRoomModal);
+  openAddRoomModal(content: any) {
+    this.modal.open(content);
   }
-  openEditRoomModal(editRoomModal: any, room: Room) {
+  openEditRoomModal(content: any, room: Room) {
     this.selectedRoom = room;
-    this.modal.open(editRoomModal);
+    this.modal.open(content);
+
     this.addRoomForm.setValue({
-      type: room.type,
-      number: room.number,
+      roomType: room.type,
+      roomNumber: room.number,
     });
   }
 
@@ -84,8 +85,8 @@ export class RoomListComponent implements OnInit {
 
   onSubmit(type: string) {
     const newRoom: any = {
-      type: this.addRoomForm.value.type,
-      number: this.addRoomForm.value.number,
+      type: this.addRoomForm.value.roomType,
+      number: this.addRoomForm.value.roomNumber,
     };
 
     const roomId: number = this.rooms.find((room: Room) => room.id === roomId)

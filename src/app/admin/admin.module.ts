@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminBookingComponent } from './admin-booking/admin-booking.component';
 import { AdminRoomComponent } from './admin-room/admin-room.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
