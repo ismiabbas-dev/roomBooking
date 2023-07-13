@@ -41,7 +41,7 @@
               <button
                 class="btn btn-outline-danger btn-sm"
                 type="button"
-                (click)="deleteRoom(deleteBookingModal, r)"
+                (click)="confirmDeleteModal(deleteBookingModal)"
               >
                 Delete
               </button>
@@ -105,7 +105,13 @@
   </div>
   <div class="modal-footer">
     <div class="d-flex gap-2 align-content-end">
-      <button type="button" class="btn btn-outline-success btn-md">Yes</button>
+      <button
+        type="button"
+        class="btn btn-outline-success btn-md"
+        (click)="deleteBooking(bookingDetails.id)"
+      >
+        Yes
+      </button>
       <button
         type="button"
         class="btn btn-outline-danger btn-md"
@@ -116,3 +122,12 @@
     </div>
   </div>
 </ng-template>
+
+<ngb-toast
+  *ngIf="toast.show"
+  [autohide]="true"
+  (hidden)="toast.show = false"
+  [ngClass]="toast.style"
+>
+  {{ toast.message }}
+</ngb-toast>

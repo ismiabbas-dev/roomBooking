@@ -10,7 +10,7 @@ export class BookingsComponent {
   toastMessage = '';
   toastStyle = 'bg-success text-light';
   bookings: any[] = [];
-  userId = localStorage.getItem('userId');
+  userId = localStorage.getItem('userId')!;
 
   constructor(private booking: BookingService) {}
 
@@ -41,5 +41,6 @@ export class BookingsComponent {
           };
         });
     });
+    console.log('bookings', this.bookings.length);
   }
 }

@@ -9,11 +9,11 @@ export class UserService {
   baseUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) {}
 
-  getUserProfile(): Observable<any> {
-    return from(this.http.get(`${this.baseUrl}/user`));
+  getUserProfile(id: number): Observable<any> {
+    return from(this.http.get(`${this.baseUrl}/user/${id}`));
   }
 
-  updateUserProfile(user: any): Observable<Object> {
-    return from(this.http.put(`${this.baseUrl}/user`, user));
+  updateUserProfile(user: any, id: number): Observable<Object> {
+    return from(this.http.put(`${this.baseUrl}/user/${id}`, user));
   }
 }

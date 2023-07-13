@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { catchError, of } from 'rxjs';
 import { Room, RoomResponse } from 'src/app/model';
 import { BookingService } from 'src/app/services/booking.service';
 import { RoomService } from 'src/app/services/room.service';

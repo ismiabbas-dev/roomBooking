@@ -100,6 +100,7 @@ export class RoomListComponent implements OnInit {
         };
       },
       complete: () => {
+        this.modal.dismissAll();
         this.getRooms();
       },
     });

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Booking, BookingResponse } from 'src/app/model';
+import { Booking } from 'src/app/model';
 import { BookingService } from 'src/app/services/booking.service';
 
 @Component({
@@ -18,6 +18,12 @@ export class BookingComponent {
     name: '',
     roomNumber: 0,
     type: '',
+  };
+
+  toast = {
+    show: false,
+    message: '',
+    style: '',
   };
 
   constructor(
@@ -69,13 +75,22 @@ export class BookingComponent {
   deleteBooking(id: number) {
     this.bookingService.deleteBooking(id).subscribe({
       next: (data) => {
-        this.loadAllBookings();
+        this.toast = {
+          show: true,
+          message: 'Booking deleted successfully',
+          style: 'bg-success text-white',
+        };
       },
       error: (error) => {
-        window.alert(error.error);
+        this.toast = {
+          show: true,
+          message: 'Error deleting booking',
+          style: 'bg-danger text-white',
+        };
       },
       complete: () => {
         this.modal.dismissAll();
+        this.loadAllBookings();
       },
     });
   }
@@ -93,7 +108,7 @@ export class BookingComponent {
     this.getBooking(roomId);
   }
 
-  deleteRoom(content: any, booking: Booking) {
+  confirmDeleteModal(content: any) {
     this.modal.open(content, {
       centered: true,
       keyboard: true,

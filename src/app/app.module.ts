@@ -16,8 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomListComponent } from './admin/room-list/room-list.component';
 import { BookingComponent } from './admin/booking/booking/booking.component';
 import { NgOptimizedImage } from '@angular/common';
-import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,16 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    AuthModule,
+    AdminModule,
+    UserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NgbCollapseModule,
-    ReactiveFormsModule,
     NgOptimizedImage,
     NgbToastModule,
-    UserModule,
-    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

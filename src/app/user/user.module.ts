@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookingsComponent } from './bookings/bookings.component';
 import { RoomsComponent } from './rooms/rooms.component';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -22,13 +22,12 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: UserDashboardComponent,
+    component: ProfileComponent,
   },
 ];
 
 @NgModule({
-  declarations: [BookingsComponent, RoomsComponent, UserDashboardComponent],
+  declarations: [BookingsComponent, RoomsComponent, ProfileComponent],
   imports: [CommonModule, RouterModule.forChild(routes), NgbToastModule],
-  exports: [RouterModule, CommonModule],
 })
 export class UserModule {}
