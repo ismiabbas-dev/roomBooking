@@ -26,14 +26,14 @@ export class RoomService {
   }
 
   updateRoom(id: number, room: any): Observable<Object> {
-    return from(this.http.put(`${this.baseUrl}/room/${id}`, room));
+    return from(
+      this.http.put(`${this.baseUrl}/room/${id}`, room, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+    );
   }
 
   deleteRoom(id: number): Observable<any> {
-    return from(
-      this.http.delete(`${this.baseUrl}/room/${id}`, {
-        responseType: 'text',
-      })
-    );
+    return from(this.http.delete(`${this.baseUrl}/room/${id}`));
   }
 }

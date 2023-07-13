@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../../services/booking.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -7,11 +8,21 @@ import { BookingService } from '../../services/booking.service';
 })
 export class UserDashboardComponent implements OnInit {
   bookings: any[] = [];
+  profileForm: FormGroup;
+  editing = false;
 
-  constructor(private booking: BookingService) {}
+  constructor(
+    private booking: BookingService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.getBookings();
+    this.profileForm = this.formBuilder.group({
+      name: ['John Doe', Validators.required],
+      email: ['johndoe@example.com', [Validators.required, Validators.email]],
+      phone: ['123-456-7890', Validators.required],
+    });
   }
 
   getBookings() {
@@ -34,5 +45,18 @@ export class UserDashboardComponent implements OnInit {
         };
       });
     });
+  }
+
+  toggleEditing() {
+    if (this.editing) {
+      // Save the changes
+      if (this.profileForm.valid) {
+        // Perform the save operation here, e.g., update the user profile in the backend
+        console.log(this.profileForm.value); // Replace with your save logic
+        this.editing = false;
+      }
+    } else {
+      this.editing = true;
+    }
   }
 }

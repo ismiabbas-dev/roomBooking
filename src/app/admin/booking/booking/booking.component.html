@@ -33,7 +33,7 @@
               <button
                 class="btn btn-outline-success btn-sm"
                 type="button"
-                (click)="viewBookingDetail(viewBookingModal, r)"
+                (click)="viewBookingDetail(viewBookingModal, r.id)"
               >
                 View
               </button>
@@ -63,15 +63,33 @@
       (click)="modal.dismiss('Cross click')"
     ></button>
   </div>
-  <div class="modal-body">
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success btn-sm">
-        Approve
-      </button>
-      <button type="button" class="btn btn-outline-danger btn-sm">
-        Reject
-      </button>
-    </div>
+  <div class="modal-body p-3">
+    <ul class="list-group list-group-flust">
+      <li class="list-group-item">
+        <strong class="text-black">Booking ID: </strong>{{ bookingDetails.id }}
+      </li>
+      <li class="list-group-item">
+        <strong class="text-black">Room Number: </strong
+        >{{ bookingDetails.roomNumber }}
+      </li>
+      <li class="list-group-item">
+        <strong class="text-black">User: </strong>{{ bookingDetails.name }}
+      </li>
+      <li class="list-group-item">
+        <strong class="text-black"> Room Type: </strong
+        >{{ bookingDetails.type | titlecase }}
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-success btn-sm"
+      (click)="approveBooking(bookingDetails)"
+    >
+      Approve
+    </button>
+    <button type="button" class="btn btn-outline-danger btn-sm">Reject</button>
   </div>
 </ng-template>
 

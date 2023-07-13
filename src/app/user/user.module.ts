@@ -13,10 +13,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
-    component: UserDashboardComponent,
-  },
-  {
     path: 'bookings',
     component: BookingsComponent,
   },
@@ -24,11 +20,15 @@ const routes: Routes = [
     path: 'rooms',
     component: RoomsComponent,
   },
+  {
+    path: 'profile',
+    component: UserDashboardComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [BookingsComponent, RoomsComponent],
+  declarations: [BookingsComponent, RoomsComponent, UserDashboardComponent],
   imports: [CommonModule, RouterModule.forChild(routes), NgbToastModule],
-  exports: [RouterModule],
+  exports: [RouterModule, CommonModule],
 })
 export class UserModule {}

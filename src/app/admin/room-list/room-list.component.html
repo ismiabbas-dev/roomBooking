@@ -43,7 +43,7 @@
       >
         Cancel
       </button>
-      <button type="submit" class="btn btn-outline-dark">Submit</button>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
     </div>
   </form>
 </ng-template>
@@ -89,18 +89,18 @@
       >
         Cancel
       </button>
-      <button type="submit" class="btn btn-outline-dark">Submit</button>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
     </div>
   </form>
 </ng-template>
 
 <ngb-toast
-  *ngIf="show"
+  *ngIf="toast.show"
   [autohide]="true"
-  (hidden)="show = false"
-  [ngClass]="toastStyle"
+  (hidden)="toast.show = false"
+  [ngClass]="toast.style"
 >
-  {{ toastMessage }}
+  {{ toast.message }}
 </ngb-toast>
 
 <div class="container-md p-4">
@@ -143,7 +143,7 @@
               <button
                 class="btn btn-outline-danger btn-sm"
                 type="button"
-                (click)="deleteRoom(r.id)"
+                (click)="openDeleteRoomModal(deleteRoomModal, r)"
               >
                 Delete
               </button>
@@ -160,3 +160,33 @@
     />
   </div>
 </div>
+
+<ng-template #deleteRoomModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Are you sure to delete this room?</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex gap-2 align-content-end">
+      <button
+        type="button"
+        class="btn btn-outline-success btn-md"
+        (click)="deleteRoom()"
+      >
+        Yes
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-md"
+        (click)="modal.dismiss()"
+      >
+        No
+      </button>
+    </div>
+  </div>
+</ng-template>

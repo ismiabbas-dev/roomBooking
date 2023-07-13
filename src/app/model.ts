@@ -5,6 +5,7 @@ export interface Booking {
   status: number;
   name?: string;
   roomNumber?: number;
+  type?: string;
 }
 
 export interface BookingResponse {

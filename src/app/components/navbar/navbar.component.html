@@ -36,7 +36,9 @@
               <a class="nav-link" routerLink="admin/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="profile">Profile</a>
+              <a class="nav-link" routerLink="admin/dashboard/profile"
+                >Profile</a
+              >
             </li>
           </ng-container>
 
@@ -45,12 +47,7 @@
           </li>
           <ng-template #userNavigation>
             <li class="nav-item">
-              <a class="nav-link" routerLink="profile">Profile</a>
-            </li>
-          </ng-template>
-          <ng-template #adminNavigation>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="profile">Profile</a>
+              <a class="nav-link" routerLink="user/profile">Profile</a>
             </li>
           </ng-template>
         </ul>

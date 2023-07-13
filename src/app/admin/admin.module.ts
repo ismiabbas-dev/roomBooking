@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserDashboardComponent } from '../user/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminBookingComponent } from './admin-booking/admin-booking.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [
-    UserDashboardComponent,
     AdminDashboardComponent,
     AdminBookingComponent,
     AdminRoomComponent,

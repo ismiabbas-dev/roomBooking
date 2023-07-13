@@ -14,10 +14,14 @@ export class RoomListComponent implements OnInit {
   addRoomForm: FormGroup = new FormGroup({
     roomType: new FormGroup({}),
     roomNumber: new FormGroup({}),
+    status: new FormGroup({}),
   });
-  toastMessage: string = '';
-  show = false;
-  toastStyle = 'bg-success text-light';
+
+  toast = {
+    show: false,
+    message: '',
+    style: '',
+  };
   selectedRoom: Room = {
     id: 0,
     type: '',
@@ -38,6 +42,7 @@ export class RoomListComponent implements OnInit {
     this.addRoomForm = this.formBuilder.group({
       roomType: ['', Validators.required],
       roomNumber: ['', Validators.required],
+      status: ['', Validators.required],
     });
   }
 
@@ -60,22 +65,65 @@ export class RoomListComponent implements OnInit {
   }
   openEditRoomModal(content: any, room: Room) {
     this.selectedRoom = room;
-    this.modal.open(content);
+    this.modal.open(content, {
+      centered: true,
+    });
 
     this.addRoomForm.setValue({
       roomType: room.type,
       roomNumber: room.number,
+      status: room.status,
+    });
+
+    console.log(this.addRoomForm.value);
+  }
+
+  openDeleteRoomModal(content: any, room: Room) {
+    this.selectedRoom = room;
+    this.modal.open(content);
+  }
+
+  deleteRoom() {
+    this.roomService.deleteRoom(this.selectedRoom.id).subscribe({
+      next: () => {
+        this.toast = {
+          show: true,
+          message: 'Room deleted successfully',
+          style: 'bg-success text-white',
+        };
+      },
+      error: (err) => {
+        this.toast = {
+          show: true,
+          message: 'Error deleting room: ' + err.error,
+          style: 'bg-danger text-white',
+        };
+      },
+      complete: () => {
+        this.getRooms();
+      },
     });
   }
 
-  deleteRoom(id: number) {
-    this.roomService.deleteRoom(id).subscribe({
-      next: (data) => {
-        this.toastMessage = 'Room deleted successfully';
-        this.show = true;
+  updateRoom() {
+    const editRoom: any = {
+      type: this.addRoomForm.value.roomType,
+      number: this.addRoomForm.value.roomNumber,
+    };
+    this.roomService.updateRoom(editRoom, this.selectedRoom).subscribe({
+      next: () => {
+        this.toast = {
+          show: true,
+          message: 'Room updated successfully',
+          style: 'bg-success text-white',
+        };
       },
       error: (err) => {
-        console.log(err);
+        this.toast = {
+          show: true,
+          message: 'Error updating room: ' + err.error,
+          style: 'bg-danger text-white',
+        };
       },
       complete: () => {
         this.getRooms();
@@ -87,39 +135,52 @@ export class RoomListComponent implements OnInit {
     const newRoom: any = {
       type: this.addRoomForm.value.roomType,
       number: this.addRoomForm.value.roomNumber,
+      status: this.addRoomForm.value.status,
     };
 
-    const roomId: number = this.rooms.find((room: Room) => room.id === roomId)
-      ?.id!;
-
-    if (type === 'edit') {
+    if (type === 'add') {
       this.roomService.createRoom(newRoom).subscribe({
         next: (room: any) => {
-          this.getRooms();
+          this.toast = {
+            show: true,
+            message: 'Room added successfully',
+            style: 'bg-success text-white',
+          };
         },
         error: (err: any) => {
-          console.log(err);
+          this.toast = {
+            show: true,
+            message: 'Error adding room: ' + err.error,
+            style: 'bg-danger text-white',
+          };
         },
         complete: () => {
-          this.toastMessage = 'Room added successfully';
-          this.show = true;
           this.addRoomForm.reset();
           this.modal.dismissAll();
+          this.getRooms();
         },
       });
     } else {
       this.roomService.updateRoom(this.selectedRoom.id, newRoom).subscribe({
         next: (room: any) => {
-          this.getRooms();
+          console.log(room);
+          this.toast = {
+            show: true,
+            message: 'Room updated successfully',
+            style: 'bg-success text-white',
+          };
         },
         error: (err: any) => {
-          console.log(err);
+          this.toast = {
+            show: true,
+            message: 'Error updating room',
+            style: 'bg-danger text-white',
+          };
         },
         complete: () => {
-          this.toastMessage = 'Room added successfully';
-          this.show = true;
           this.addRoomForm.reset();
           this.modal.dismissAll();
+          this.getRooms();
         },
       });
     }
