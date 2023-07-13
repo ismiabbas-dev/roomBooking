@@ -1,25 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomService {
-  baseUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) {}
 
   getRooms(): Observable<any> {
-    return from(this.http.get(`${this.baseUrl}/room`));
+    return from(this.http.get(`${apiUrl}/room`));
   }
 
   getRoom(id: number): Observable<any> {
-    return from(this.http.get(`${this.baseUrl}/room/${id}`));
+    return from(this.http.get(`${apiUrl}/room/${id}`));
   }
 
   createRoom(room: Object): Observable<Object> {
     return from(
-      this.http.post(`${this.baseUrl}/room`, room, {
+      this.http.post(`${apiUrl}/room`, room, {
         headers: { 'Content-Type': 'application/json' },
       })
     );
@@ -27,13 +29,13 @@ export class RoomService {
 
   updateRoom(id: number, room: any): Observable<Object> {
     return from(
-      this.http.put(`${this.baseUrl}/room/${id}`, room, {
+      this.http.put(`${apiUrl}/room/${id}`, room, {
         headers: { 'Content-Type': 'application/json' },
       })
     );
   }
 
   deleteRoom(id: number): Observable<any> {
-    return from(this.http.delete(`${this.baseUrl}/room/${id}`));
+    return from(this.http.delete(`${apiUrl}/room/${id}`));
   }
 }
