@@ -1,0 +1,113 @@
+<div class="container mt-3">
+  <div class="d-flex flex-column">
+    <h4>User Profile</h4>
+    <p class="lead">
+      Hi {{ userProfiles.name }}! Welcome to Room Reservation App
+    </p>
+
+    <div class="d-flex flex-row mt-3 border p-4 rounded">
+      <div class="me-5">
+        <img
+          [src]="
+            userProfiles.photo
+              ? userProfiles.photo
+              : '/assets/profile-photo.jpg'
+          "
+          alt=""
+          width="200"
+          height="200"
+          class="profile-photo"
+        />
+      </div>
+      <div>
+        <h4>Information</h4>
+        <div class="mt-4">
+          <ul class="list-group list-group-flush">
+            <p class="lead"><strong>Name:</strong> {{ userProfiles.name }}</p>
+            <p class="lead"><strong>Email:</strong> {{ userProfiles.email }}</p>
+            <p class="lead">
+              <strong>User Id:</strong> {{ userProfiles.userId }}
+            </p>
+            <p class="lead">
+              <strong>Role:</strong>
+              {{ userProfiles.role === "user" ? "User" : "Admin" }}
+            </p>
+          </ul>
+        </div>
+        <div>
+          <button
+            class="btn btn-danger mt-3"
+            (click)="editProfileModal(editModal)"
+          >
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Profile</h4>
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          placeholder="Enter your name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="photo" class="form-label">Photo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          formControlName="photo"
+          placeholder="Enter your photo url"
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="modal.dismiss()"
+        >
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<style>
+  .profile-photo {
+    border-radius: 50%;
+  }
+</style>
+
+<ngb-toast
+  *ngIf="toast.show"
+  [autohide]="true"
+  (hidden)="toast.show = false"
+  [ngClass]="toast.style"
+>
+  {{ toast.message }}
+</ngb-toast>

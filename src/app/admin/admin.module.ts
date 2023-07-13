@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from '../user/profile/profile.component';
+import { ProfileNewComponent } from '../profile-new/profile-new.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    component: ProfileNewComponent,
   },
 ];
 @NgModule({

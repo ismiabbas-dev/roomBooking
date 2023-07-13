@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookingsComponent } from './bookings/bookings.component';
 import { RoomsComponent } from './rooms/rooms.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileNewComponent } from '../profile-new/profile-new.component';
 
 const routes: Routes = [
   {
@@ -22,12 +22,12 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    component: ProfileNewComponent,
   },
 ];
 
 @NgModule({
-  declarations: [BookingsComponent, RoomsComponent, ProfileComponent],
+  declarations: [BookingsComponent, RoomsComponent],
   imports: [CommonModule, RouterModule.forChild(routes), NgbToastModule],
 })
 export class UserModule {}

@@ -19,6 +19,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
+import { ProfileNewComponent } from './profile-new/profile-new.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
     FooterComponent,
     RoomListComponent,
     BookingComponent,
+    ProfileNewComponent,
   ],
   imports: [
     BrowserModule,
