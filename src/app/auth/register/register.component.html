@@ -48,17 +48,17 @@
         <input
           type="text"
           class="form-control"
-          id="username"
-          formControlName="username"
-          placeholder="Enter username"
+          id="name"
+          formControlName="name"
+          placeholder="Enter name"
           required
         />
-        <label for="username">Username</label>
+        <label for="name">Username</label>
         <div
           *ngIf="
-            registerForm.controls['username'].invalid &&
-            (registerForm.controls['username'].dirty ||
-              registerForm.controls['username'].touched)
+            registerForm.controls['name'].invalid &&
+            (registerForm.controls['name'].dirty ||
+              registerForm.controls['name'].touched)
           "
           class="invalid-feedback"
         >

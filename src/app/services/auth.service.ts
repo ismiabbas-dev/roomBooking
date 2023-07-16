@@ -12,6 +12,7 @@ export class AuthService {
   /**
    * A subject that emits a boolean value indicating whether the user is signed in or not.
    */
+
   public userSignedIn$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
@@ -23,12 +24,15 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   login(email: string | null, password: string | null): Observable<any> {
+    console.log('login', email, password);
     return from(
       this.http.post(
         `${apiUrl}/auth/login`,
         { email, password },
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       )
     );
@@ -40,11 +44,11 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   register(user: any): Observable<any> {
-    return from(
-      this.http.post(`${apiUrl}/auth/register`, user, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-    );
+    return this.http.post(`${apiUrl}/auth/register`, user, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   /**

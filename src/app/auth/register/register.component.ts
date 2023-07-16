@@ -21,9 +21,9 @@ export class RegisterComponent {
   ) {
     this.registerForm = this.fb.group({
       email: '',
-      username: '',
+      name: '',
       password: '',
-      photo: '',
+      photo: 'photoexample.jpg',
     });
   }
 

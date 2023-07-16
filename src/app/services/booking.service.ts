@@ -4,6 +4,11 @@ import { BehaviorSubject, Observable, from, map } from 'rxjs';
 import { Booking, BookingResponse } from '../model';
 import { environment } from '../../environments/environment';
 
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${localStorage.getItem('token')}`,
+};
+
 const apiUrl = environment.apiUrl;
 
 @Injectable({
@@ -43,29 +48,33 @@ export class BookingService {
           userId: parseInt(this.userId),
         },
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers,
         }
       )
     );
   }
 
   getBooking(id: number): Observable<Booking> {
-    return from(this.http.get<Booking>(`${apiUrl}/booking/${id}`));
+    return from(
+      this.http.get<Booking>(`${apiUrl}/booking/${id}`, {
+        headers,
+      })
+    );
   }
 
   updateBooking(booking: Booking): Observable<Booking> {
     return from(
-      this.http.put<Booking>(`${apiUrl}/booking/${booking.id}`, booking)
+      this.http.put<Booking>(`${apiUrl}/booking/${booking.id}`, booking, {
+        headers,
+      })
     );
   }
 
   deleteBooking(id: number): Observable<void> {
-    return from(this.http.delete<void>(`${apiUrl}/booking/${id}`));
+    return from(this.http.delete<void>(`${apiUrl}/booking/${id}`, { headers }));
   }
 
   getBookings(): Observable<Booking[]> {
-    return from(this.http.get<Booking[]>(`${apiUrl}/booking`));
+    return from(this.http.get<Booking[]>(`${apiUrl}/booking`, { headers }));
   }
 }

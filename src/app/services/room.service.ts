@@ -5,6 +5,11 @@ import { environment } from '../../environments/environment';
 
 const apiUrl = environment.apiUrl;
 
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${localStorage.getItem('token')}`,
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,30 +17,22 @@ export class RoomService {
   constructor(private http: HttpClient) {}
 
   getRooms(): Observable<any> {
-    return from(this.http.get(`${apiUrl}/room`));
+    return from(this.http.get(`${apiUrl}/room`, { headers }));
   }
 
   getRoom(id: number): Observable<any> {
-    return from(this.http.get(`${apiUrl}/room/${id}`));
+    return from(this.http.get(`${apiUrl}/room/${id}`, { headers }));
   }
 
   createRoom(room: Object): Observable<Object> {
-    return from(
-      this.http.post(`${apiUrl}/room`, room, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-    );
+    return from(this.http.post(`${apiUrl}/room`, room, { headers }));
   }
 
   updateRoom(id: number, room: any): Observable<Object> {
-    return from(
-      this.http.put(`${apiUrl}/room/${id}`, room, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-    );
+    return from(this.http.put(`${apiUrl}/room/${id}`, room, { headers }));
   }
 
   deleteRoom(id: number): Observable<any> {
-    return from(this.http.delete(`${apiUrl}/room/${id}`));
+    return from(this.http.delete(`${apiUrl}/room/${id}`, { headers }));
   }
 }
