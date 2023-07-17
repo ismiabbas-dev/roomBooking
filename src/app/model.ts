@@ -9,12 +9,12 @@ export interface Booking {
 }
 
 export interface BookingResponse {
-  BookingID: number;
-  RoomID: number;
-  BookingStatus: number;
-  UserID: number;
-  RoomNumber: number;
-  Name: string;
+  bookingID: number;
+  roomID: number;
+  bookingStatus: number;
+  userID: number;
+  roomNumber: number;
+  name: string;
 }
 
 export interface BookingDetails {

@@ -32,7 +32,7 @@ export class BookingService {
         map((bookings: any) =>
           bookings.filter(
             (booking: BookingResponse) =>
-              booking.UserID == parseInt(this.userId)
+              booking.userID == parseInt(this.userId)
           )
         ),
         map((filteredBookings) => filteredBookings.length)

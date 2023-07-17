@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Booking, BookingDetails, BookingResponse } from 'src/app/model';
 import { BookingService } from 'src/app/services/booking.service';
 
 @Component({
@@ -19,28 +20,26 @@ export class BookingsComponent {
   }
 
   getBookings() {
-    console.log(this.userId);
     this.booking.getBookings().subscribe((data) => {
       this.bookings = data
-        .filter((booking: any) => booking.UserID == this.userId)
+        .filter((booking: any) => booking.userID == this.userId)
         .map((booking: any) => {
           return {
-            id: booking.BookingID,
-            roomId: booking.RoomID,
-            status: booking.BookingStatus,
-            userId: booking.UserID,
-            roomNumber: booking.RoomNumber,
+            id: booking.bookingID,
+            roomId: booking.roomID,
+            status: booking.bookingStatus,
+            userId: booking.userID,
+            roomNumber: booking.roomNumber,
             roomType: booking.RoomType,
             bookedBy: booking.Name,
             bookingStatus:
-              booking.BookingStatus == 0
+              booking.bookingStatus == 0
                 ? 'Booked'
-                : booking.BookingStatus == 1
+                : booking.bookingStatus == 1
                 ? 'Rejected'
                 : 'Approved',
-          };
+          } as Booking;
         });
     });
-    console.log('bookings', this.bookings.length);
   }
 }
