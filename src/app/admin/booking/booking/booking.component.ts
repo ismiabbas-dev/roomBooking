@@ -40,10 +40,10 @@ export class BookingComponent {
       next: (data) => {
         this.bookings = data.map((booking: any) => {
           return {
-            id: booking.BookingID,
-            roomId: booking.RoomID,
-            userId: booking.UserID,
-            status: booking.BookingStatus,
+            id: booking.bookingID,
+            roomId: booking.roomID,
+            userId: booking.userID,
+            status: booking.bookingStatus,
             name: booking.Name,
             roomNumber: booking.RoomNumber,
             type: booking.RoomType,
@@ -60,13 +60,13 @@ export class BookingComponent {
     this.bookingService.getBooking(id).subscribe({
       next: (data: any) => {
         this.bookingDetails = {
-          id: data[0].BookingID,
-          roomId: data[0].RoomID,
-          userId: data[0].UserID,
-          status: data[0].BookingStatus,
-          name: data[0].Name,
-          roomNumber: data[0].RoomNumber,
-          type: data[0].RoomType,
+          id: data.bookingID,
+          roomId: data.roomID,
+          userId: data.userID,
+          status: data.bookingStatus,
+          name: data.userName,
+          roomNumber: data.roomNumber,
+          type: data.roomType,
         };
       },
     });
@@ -108,7 +108,8 @@ export class BookingComponent {
     this.getBooking(roomId);
   }
 
-  confirmDeleteModal(content: any) {
+  confirmDeleteModal(content: any, roomId: any) {
+    this.getBooking(roomId);
     this.modal.open(content, {
       centered: true,
       keyboard: true,

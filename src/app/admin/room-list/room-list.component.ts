@@ -22,10 +22,10 @@ export class RoomListComponent implements OnInit {
     message: '',
     style: '',
   };
-  selectedRoom: Room = {
+  selectedRoom: any = {
     id: 0,
-    type: '',
-    number: 0,
+    roomType: '',
+    roomNumber: 0,
     bookedBy: '',
     status: 1,
   };
@@ -50,11 +50,11 @@ export class RoomListComponent implements OnInit {
     this.roomService.getRooms().subscribe((rooms: RoomResponse[]) => {
       this.rooms = rooms.map((room: RoomResponse) => {
         return {
-          id: room.RoomID,
-          type: room.RoomType,
-          number: room.RoomNumber,
-          status: room.RoomStatus,
-          bookedBy: room.Name,
+          id: room.roomID,
+          type: room.roomType,
+          number: room.roomNumber,
+          status: room.roomStatus,
+          bookedBy: room.userName,
         };
       });
     });

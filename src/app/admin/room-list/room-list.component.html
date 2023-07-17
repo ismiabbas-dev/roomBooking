@@ -30,8 +30,8 @@
           formControlName="roomType"
           [value]="addRoomForm.value.roomType"
         >
-          <option value="single" selected>Single</option>
-          <option value="double">Double</option>
+          <option value="Single" selected>Single</option>
+          <option value="Double">Double</option>
         </select>
       </div>
     </div>
@@ -65,7 +65,7 @@
           type="number"
           class="form-control"
           formControlName="roomNumber"
-          [value]="selectedRoom.number"
+          [value]="selectedRoom.roomNumber"
         />
         <label for="number">Room Number</label>
       </div>
@@ -74,10 +74,10 @@
         <select
           class="form-select form-select-lg form-floating"
           formControlName="roomType"
-          [value]="selectedRoom.type"
+          [value]="selectedRoom.roomType"
         >
-          <option value="single">Single</option>
-          <option value="double">Double</option>
+          <option value="Single">Single</option>
+          <option value="Double">Double</option>
         </select>
       </div>
     </div>

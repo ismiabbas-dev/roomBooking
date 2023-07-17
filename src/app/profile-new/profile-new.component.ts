@@ -38,23 +38,21 @@ export class ProfileNewComponent {
   ) {}
 
   getUser() {
-    return this.userService
-      .getUserProfile(parseInt(this.userId, 10))
-      .subscribe({
-        next: (data) => {
-          this.userProfiles = {
-            name: data.Name,
-            userId: data.UserID,
-            email: data.Email,
-            role: data.Role,
-            photo: data.Photo,
-          };
-        },
-        error: (error) => {},
-        complete: () => {
-          console.log('Completed', this.userProfiles);
-        },
-      });
+    return this.userService.getUserProfile(parseInt(this.userId)).subscribe({
+      next: (data) => {
+        this.userProfiles = {
+          name: data.name,
+          userId: data.id,
+          email: data.email,
+          role: data.role,
+          photo: data.photo,
+        };
+      },
+      error: (error) => {},
+      complete: () => {
+        console.log('Completed', this.userProfiles);
+      },
+    });
   }
 
   ngOnInit(): void {

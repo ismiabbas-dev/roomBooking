@@ -37,11 +37,11 @@ export interface Room {
 }
 
 export interface RoomResponse {
-  RoomID: number;
-  RoomNumber: number;
-  RoomType: string;
-  RoomStatus: number;
-  Name: string;
+  roomID: number;
+  roomNumber: number;
+  roomType: string;
+  roomStatus: number;
+  userName: string;
 }
 
 export interface User {

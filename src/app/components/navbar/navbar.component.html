@@ -18,7 +18,7 @@
         [ngbCollapse]="!isCollapsed"
       >
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item" *ngIf="role === 'user'">
+          <li class="nav-item" *ngIf="role === 'member'">
             <a
               class="nav-link"
               routerLink="user/rooms"
@@ -27,7 +27,7 @@
             >
           </li>
 
-          <li class="nav-item" *ngIf="role === 'user'">
+          <li class="nav-item" *ngIf="role === 'member'">
             <a
               class="nav-link align-items-center"
               routerLink="user/bookings"

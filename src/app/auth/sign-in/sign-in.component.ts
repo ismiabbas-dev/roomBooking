@@ -27,7 +27,7 @@ export class SignInComponent {
           localStorage.setItem('role', res.role);
           localStorage.setItem('userId', res.id);
 
-          if (res.role === 'user') {
+          if (res.role === 'member') {
             this.router.navigate(['/user/']);
           } else {
             this.router.navigate(['/admin/']);

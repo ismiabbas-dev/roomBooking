@@ -26,15 +26,15 @@ export class RoomsComponent {
     this.roomService.getRooms().subscribe((rooms: RoomResponse[]) => {
       this.rooms = rooms
         .filter((room: RoomResponse) => {
-          return room.RoomStatus === 1;
+          return room.roomStatus === 1;
         })
         .map((room: RoomResponse) => {
           return {
-            id: room.RoomID,
-            type: room.RoomType,
-            number: room.RoomNumber,
-            status: room.RoomStatus,
-            bookedBy: room.Name,
+            id: room.roomID,
+            type: room.roomType,
+            number: room.roomNumber,
+            status: room.roomStatus,
+            bookedBy: room.userName,
           };
         });
     });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, from } from 'rxjs';
+import { Observable, Subject, catchError, from, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const apiUrl = environment.apiUrl;
@@ -24,7 +24,6 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   login(email: string | null, password: string | null): Observable<any> {
-    console.log('login', email, password);
     return from(
       this.http.post(
         `${apiUrl}/auth/login`,
@@ -35,6 +34,10 @@ export class AuthService {
           },
         }
       )
+    ).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
     );
   }
 
@@ -44,11 +47,18 @@ export class AuthService {
    * @returns An observable that emits the response from the server.
    */
   register(user: any): Observable<any> {
-    return this.http.post(`${apiUrl}/auth/register`, user, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return from(
+      this.http.post(`${apiUrl}/auth/register`, user, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    ).pipe(
+      catchError((err) => {
+        console.error('Error occurred:', err);
+        return err;
+      })
+    );
   }
 
   /**

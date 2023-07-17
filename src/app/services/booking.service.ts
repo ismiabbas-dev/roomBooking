@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, from, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  from,
+  map,
+  throwError,
+} from 'rxjs';
 import { Booking, BookingResponse } from '../model';
 import { environment } from '../../environments/environment';
 
 const headers = {
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${localStorage.getItem('token')}`,
+  Authorization: `${localStorage.getItem('token')}`,
 };
 
 const apiUrl = environment.apiUrl;
