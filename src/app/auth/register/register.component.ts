@@ -24,6 +24,7 @@ export class RegisterComponent {
       name: '',
       password: '',
       photo: 'photoexample.jpg',
+      role: 'member',
     });
   }
 

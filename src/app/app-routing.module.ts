@@ -11,11 +11,13 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    canActivate: [authGuard],
   },
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [authGuard],
   },
   {
     path: 'booking',

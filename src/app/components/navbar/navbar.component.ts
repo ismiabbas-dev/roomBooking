@@ -12,6 +12,8 @@ export class NavbarComponent {
   title = 'Room Reservation System';
   role: string = 'admin';
 
+  titleLink = '/';
+
   public isCollapsed = false;
 
   constructor(
@@ -21,6 +23,11 @@ export class NavbarComponent {
   ) {
     this.role = this.auth.getRole();
     this.bookingService.getBookings();
+    if (this.role === 'admin') {
+      this.titleLink = '/admin/dashboard/room';
+    } else {
+      this.titleLink = '/user/rooms';
+    }
   }
 
   ngOnInit(): void {}
