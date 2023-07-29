@@ -66,7 +66,7 @@ export class AuthService {
    * @returns The role of the currently logged in user.
    */
   getRole(): string {
-    return localStorage.getItem('role')!;
+    return sessionStorage.getItem('role')!;
   }
 
   /**
@@ -74,6 +74,6 @@ export class AuthService {
    * @returns A boolean value indicating whether the user is logged in or not.
    */
   isLoggedIn(): boolean {
-    return localStorage.getItem('token') !== null;
+    return sessionStorage.getItem('token') !== null;
   }
 }

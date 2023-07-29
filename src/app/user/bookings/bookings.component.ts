@@ -11,7 +11,7 @@ export class BookingsComponent {
   toastMessage = '';
   toastStyle = 'bg-success text-light';
   bookings: any[] = [];
-  userId = localStorage.getItem('userId')!;
+  userId = sessionStorage.getItem('userId')!;
 
   constructor(private booking: BookingService) {}
 
@@ -30,7 +30,7 @@ export class BookingsComponent {
             status: booking.bookingStatus,
             userId: booking.userID,
             roomNumber: booking.roomNumber,
-            roomType: booking.RoomType,
+            roomType: booking.roomType,
             bookedBy: booking.Name,
             bookingStatus:
               booking.bookingStatus == 0
@@ -40,6 +40,7 @@ export class BookingsComponent {
                 : 'Approved',
           } as Booking;
         });
+      console.log(data);
     });
   }
 }

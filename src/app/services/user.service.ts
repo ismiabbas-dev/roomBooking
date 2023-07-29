@@ -7,7 +7,7 @@ const apiUrl = environment.apiUrl;
 
 const headers = {
   'Content-Type': 'application/json',
-  Authorization: `${localStorage.getItem('token')}`,
+  Authorization: `${sessionStorage.getItem('token')}`,
 };
 
 @Injectable({

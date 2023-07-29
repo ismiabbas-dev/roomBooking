@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 
 const headers = {
   'Content-Type': 'application/json',
-  Authorization: `${localStorage.getItem('token')}`,
+  Authorization: `${sessionStorage.getItem('token')}`,
 };
 
 const apiUrl = environment.apiUrl;
@@ -24,7 +24,7 @@ const apiUrl = environment.apiUrl;
 export class BookingService {
   public bookingCount$ = new BehaviorSubject<number>(0);
 
-  userId = localStorage.getItem('userId')!;
+  userId = sessionStorage.getItem('userId')!;
 
   constructor(private http: HttpClient) {
     this.getBookings()

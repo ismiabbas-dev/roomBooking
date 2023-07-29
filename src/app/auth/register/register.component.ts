@@ -33,6 +33,7 @@ export class RegisterComponent {
       next: (data) => {
         this.toastMessage = 'User registered successfully';
         this.show = true;
+        sessionStorage.clear();
       },
       error: (error) => {
         this.toastMessage = error.error.message;

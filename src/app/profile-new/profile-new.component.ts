@@ -15,7 +15,7 @@ export class ProfileNewComponent {
     photo: [''],
   });
 
-  userId = localStorage.getItem('userId')!;
+  userId = sessionStorage.getItem('userId')!;
 
   toast = {
     show: false,
@@ -44,7 +44,7 @@ export class ProfileNewComponent {
           name: data.name,
           userId: data.id,
           email: data.email,
-          role: data.role,
+          role: data.role.toLowerCase(),
           photo: data.photo,
         };
       },

@@ -33,7 +33,7 @@ export class NavbarComponent {
   ngOnInit(): void {}
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     this.auth.userSignedIn$.next(false);
     this.router.navigate(['/auth/sign-in']);
   }

@@ -23,9 +23,9 @@ export class SignInComponent {
       next: (res) => {
         if (res) {
           this.auth.userSignedIn$.next(true);
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('role', res.role);
-          localStorage.setItem('userId', res.id);
+          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem('role', res.role);
+          sessionStorage.setItem('userId', res.id);
 
           if (res.role === 'member') {
             this.router.navigate(['/user/']);
